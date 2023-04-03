@@ -97,25 +97,25 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-            onTap: (value) {
-              controller.jumpToPage(value);
-            },
-            currentIndex: posicaoPagina,
-            items: const [
-              BottomNavigationBarItem(
-                label: "Pag1",
-                icon: Icon(Icons.home),
-              ),
-              BottomNavigationBarItem(
-                label: "Pag2",
-                icon: Icon(Icons.add),
-              ),
-              BottomNavigationBarItem(
-                label: "Pag3",
-                icon: Icon(Icons.person),
-              )
-            ],
+        onTap: (value) {
+          controller.jumpToPage(value);
+        },
+        currentIndex: posicaoPagina,
+        items: const [
+          BottomNavigationBarItem(
+            label: "Pag1",
+            icon: Icon(Icons.home),
           ),
+          BottomNavigationBarItem(
+            label: "Pag2",
+            icon: Icon(Icons.add),
+          ),
+          BottomNavigationBarItem(
+            label: "Pag3",
+            icon: Icon(Icons.person),
+          )
+        ],
+      ),
     );
   }
 }
