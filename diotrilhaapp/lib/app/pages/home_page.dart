@@ -1,52 +1,121 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+import 'dados_cadastrais_page.dart';
+import 'pagina1.dart';
+import 'pagina2.dart';
+import 'pagina3.dart';
 
-  final String title;
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class _HomePageState extends State<HomePage> {
+  PageController controller = PageController(initialPage: 0);
+  int posicaoPagina = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          widget.title,
+        title: const Text(
+          "Home Page",
           //style: GoogleFonts.fasterOne(),
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      drawer: SafeArea(
+        child: Drawer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                InkWell(
+                  child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      width: double.infinity,
+                      child: const Text("Dados cadastráis")),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const DadosCadastraisPage(
+                          texto: "Meus dados",
+                          dados: ["Nome", "Endereço"],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                const Divider(),
+                const SizedBox(
+                  height: 10,
+                ),
+                InkWell(
+                  child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      width: double.infinity,
+                      child: const Text("Termos de uso e privacidade")),
+                  onTap: () {},
+                ),
+                const Divider(),
+                const SizedBox(
+                  height: 10,
+                ),
+                InkWell(
+                  child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      width: double.infinity,
+                      child: const Text("Configurações")),
+                  onTap: () {},
+                ),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView(
+              controller: controller,
+              onPageChanged: (value) {
+                setState(() {
+                  posicaoPagina = value;
+                });
+              },
+              children: const [
+                Pagina1Page(),
+                Pagina2Page(),
+                Pagina3Page(),
+              ],
+            ),
+          ),
+        ],
       ),
+      bottomNavigationBar: BottomNavigationBar(
+            onTap: (value) {
+              controller.jumpToPage(value);
+            },
+            currentIndex: posicaoPagina,
+            items: const [
+              BottomNavigationBarItem(
+                label: "Pag1",
+                icon: Icon(Icons.home),
+              ),
+              BottomNavigationBarItem(
+                label: "Pag2",
+                icon: Icon(Icons.add),
+              ),
+              BottomNavigationBarItem(
+                label: "Pag3",
+                icon: Icon(Icons.person),
+              )
+            ],
+          ),
     );
   }
 }
