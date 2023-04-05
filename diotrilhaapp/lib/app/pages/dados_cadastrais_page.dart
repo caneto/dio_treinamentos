@@ -72,7 +72,8 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                             firstDate: DateTime(1900, 5, 20),
                             lastDate: DateTime(2023, 10, 23));
                         if (data != null) {
-                          dataNacimentoController.text = dateFormat.format(data);
+                          dataNacimentoController.text =
+                              dateFormat.format(data);
                           dataNascimento = data;
                         }
                       }),
@@ -134,62 +135,88 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                           salarioEscolhido = value;
                         });
                       }),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        salvando = false;
-                      });
-                      if (nomeController.text.trim().length < 3) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text("O nome deve ser preenchido")));
-                        return;
-                      }
-                      if (dataNascimento == null) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text("Data de nascimento inválida")));
-                        return;
-                      }
-                      if (nivelSelecionado.trim() == '') {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text("O nível deve ser selecionado")));
-                        return;
-                      }
-                      if (linguagensSelecionadas.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                            content: Text(
-                                "Deve ser selecionado ao menos uma linguagem")));
-                        return;
-                      }
-                      if (tempoExperiencia == 0) {
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                            content: Text(
-                                "Deve ter ao menos um ano de experiência em uma das linguagens")));
-                        return;
-                      }
-                      if (salarioEscolhido == 0) {
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                            content: Text(
-                                "A pretenção salarial deve ser maior que 0")));
-                        return;
-                      }
-
-                      setState(() {
-                        salvando = true;
-                      });
-                      Future.delayed(const Duration(seconds: 3), () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text("Dados salvo com sucesso")));
+                  Container(
+                    width: 380,
+                    height: 50,
+                    margin: const EdgeInsets.only(
+                        left: 25, right: 25, top: 10, bottom: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.blue.shade200,
+                      borderRadius: const BorderRadius.all(Radius.circular(11)),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 7.0,
+                          color: Colors.grey.shade500,
+                          spreadRadius: 0.3,
+                        )
+                      ],
+                    ),
+                    child: TextButton(
+                      onPressed: () {
                         setState(() {
                           salvando = false;
                         });
-                        Navigator.pop(context);
-                      });
-                    },
-                    child: const Text("Salvar"),
+                        if (nomeController.text.trim().length < 3) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text("O nome deve ser preenchido")));
+                          return;
+                        }
+                        if (dataNascimento == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content:
+                                      Text("Data de nascimento inválida")));
+                          return;
+                        }
+                        if (nivelSelecionado.trim() == '') {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content:
+                                      Text("O nível deve ser selecionado")));
+                          return;
+                        }
+                        if (linguagensSelecionadas.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                              content: Text(
+                                  "Deve ser selecionado ao menos uma linguagem")));
+                          return;
+                        }
+                        if (tempoExperiencia == 0) {
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                              content: Text(
+                                  "Deve ter ao menos um ano de experiência em uma das linguagens")));
+                          return;
+                        }
+                        if (salarioEscolhido == 0) {
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                              content: Text(
+                                  "A pretenção salarial deve ser maior que 0")));
+                          return;
+                        }
+                        setState(() {
+                          salvando = true;
+                        });
+                        Future.delayed(const Duration(seconds: 3), () {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Dados salvo com sucesso"),
+                          ));
+                          setState(() {
+                            salvando = false;
+                          });
+                          Navigator.pop(context);
+                        });
+                      },
+                      child: const Text(
+                        "Salvar",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
