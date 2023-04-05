@@ -14,11 +14,12 @@ class MyApp extends StatelessWidget {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
             primarySwatch: Colors.blue,
             textTheme: GoogleFonts.robotoTextTheme()),
-        localizationsDelegates: const [GlobalMaterialLocalizations.delegate],
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
         supportedLocales: const [
           Locale('pt'),
         ],
