@@ -42,10 +42,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const DadosCadastraisPage(
-                          texto: "Meus dados",
-                          dados: ["Nome", "Endereço"],
-                        ),
+                        builder: (context) => const DadosCadastraisPage(),
                       ),
                     );
                   },
