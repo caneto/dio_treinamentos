@@ -8,19 +8,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        textTheme: GoogleFonts.robotoTextTheme()
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+            primarySwatch: Colors.blue,
+            textTheme: GoogleFonts.robotoTextTheme()),
+        localizationsDelegates: const [GlobalMaterialLocalizations.delegate],
+        supportedLocales: const [
+          Locale('pt'),
+        ],
+        home: const LoginPage(),
       ),
-      localizationsDelegates: const [
-         GlobalMaterialLocalizations.delegate
-       ],
-       supportedLocales: const [
-         Locale('pt'),
-       ],
-      home: const LoginPage(),
     );
   }
 }
