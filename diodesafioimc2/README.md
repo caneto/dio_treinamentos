@@ -2,4 +2,5 @@
 
 Aplicativo de uma calculadora de IMC - Desafio 
 
-![](https://github.com/caneto/desafio_sexta_flutter_adf/blob/main/screen/Screenshot_1679693659.png)
+![](https://github.com/caneto/dio_treinamentos/blob/main/diodesafioimc2/images/Screenshot_1680797439.png)
+![](https://github.com/caneto/dio_treinamentos/blob/main/diodesafioimc2/images/Screenshot_1680797439.png)
