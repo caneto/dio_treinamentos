@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:trilhaapp/app/repositories/linguagens_repository.dart';
 import 'package:trilhaapp/app/repositories/nivel_repository.dart';
+import 'package:trilhaapp/app/services/app_storage_service.dart';
 import 'package:trilhaapp/app/shared/widgets/text_label.dart';
 
 class DadosCadastraisPage extends StatefulWidget {
@@ -12,6 +13,8 @@ class DadosCadastraisPage extends StatefulWidget {
 }
 
 class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
+  AppStorageService storage = AppStorageService();
+
   var nomeController = TextEditingController(text: "");
   var dataNacimentoController = TextEditingController(text: "");
   DateTime? dataNascimento;
@@ -19,7 +22,7 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
   var linguagensRepository = LinguagensRepository();
   var niveis = [];
   var linguagens = [];
-  var linguagensSelecionadas = [];
+  List<String> linguagensSelecionadas = [];
   var nivelSelecionado = "";
   double salarioEscolhido = 0;
   int tempoExperiencia = 0;
@@ -28,11 +31,37 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
 
   bool salvando = false;
 
+  final String CHAVE_DADOS_CADASTRAIS_NOME = "CHAVE_DADOS_CADASTRAIS_NOME";
+  final String CHAVE_DADOS_CADASTRAIS_DATA_NASCIMENTO =
+      "CHAVE_DADOS_CADASTRAIS_DATA_NASCIMENTO";
+  final String CHAVE_DADOS_CADASTRAIS_NIVEL_EXPERIENCIA =
+      "CHAVE_DADOS_CADASTRAIS_NIVEL_EXPERIENCIA";
+  final String CHAVE_DADOS_CADASTRAIS_LINGUAGENS =
+      "CHAVE_DADOS_CADASTRAIS_LINGUAGENS";
+  final String CHAVE_DADOS_CADASTRAIS_TEMPO_EXPERIENCIA =
+      "CHAVE_DADOS_CADASTRAIS_TEMPO_EXPERIENCIA";
+  final String CHAVE_DADOS_CADASTRAIS_SALARIO =
+      "CHAVE_DADOS_CADASTRAIS_SALARIO";
+
   @override
   void initState() {
     niveis = nivelRepository.retornaNiveis();
     linguagens = linguagensRepository.retornaLinguagens();
+    carregarDados();
     super.initState();
+  }
+
+  carregarDados() async {
+    nomeController.text = await storage.getDadosCadastraisNome();
+    dataNascimento = DateTime.parse(await storage.getDadosCadastraisDataNascimento());
+    if (dataNacimentoController.text.isEmpty) {
+      dataNacimentoController.text = dateFormat.format(dataNascimento!);
+    }
+    nivelSelecionado = await storage.getDadosCadastraisNivelExperiencia();
+    linguagensSelecionadas = await storage.getDadosCadastraisLinguagens();
+    tempoExperiencia = await storage.getDadosCadastraisTempoExperiencia();
+    salarioEscolhido = await storage.getDadosCadastraisSalario();
+    setState(() {});
   }
 
   List<DropdownMenuItem<int>> returnItens(int quantidadeMaxima) {
@@ -152,7 +181,7 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                       ],
                     ),
                     child: TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         setState(() {
                           salvando = false;
                         });
@@ -194,6 +223,20 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                                   "A pretenção salarial deve ser maior que 0")));
                           return;
                         }
+
+                        await storage
+                            .setDadosCadastraisNome(nomeController.text);
+                        await storage
+                            .setDadosCadastraisDataNascimento(dataNascimento!);
+                        await storage.setDadosCadastraisNivelExperiencia(
+                            nivelSelecionado);
+                        await storage.setDadosCadastraisLinguagens(
+                            linguagensSelecionadas);
+                        await storage.setDadosCadastraisTempoExperiencia(
+                            tempoExperiencia);
+                        await storage
+                            .setDadosCadastraisSalario(salarioEscolhido);
+
                         setState(() {
                           salvando = true;
                         });

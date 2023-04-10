@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/app/pages/list_view_horizontal.dart';
+import 'package:trilhaapp/app/pages/tarefa_page/tarefa_hive_page.dart';
 import 'package:trilhaapp/app/shared/widgets/custom_drawer.dart';
 
 import 'card_page.dart';
 import 'image_assets.dart';
 import 'list_view.dart';
-import 'tarefa_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

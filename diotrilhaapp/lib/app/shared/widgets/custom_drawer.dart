@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:trilhaapp/app/pages/dados_cadastrais_page.dart';
+import 'package:trilhaapp/app/pages/configuracoes/configuracoes_hive_page.dart';
+import 'package:trilhaapp/app/pages/dados_cadastrais/dados_cadastrais_hive.dart';
 import 'package:trilhaapp/app/pages/login_page.dart';
+import 'package:trilhaapp/app/pages/numeros_aleatorios/numeros_aleatorios_hide_page.dart';
 
 class CustonDrawer extends StatelessWidget {
   const CustonDrawer({Key? key}) : super(key: key);
@@ -67,7 +69,7 @@ class CustonDrawer extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const DadosCadastraisPage()));
+                      builder: (context) => const DadosCadastraisHivePage()));
             },
           ),
           const Divider(),
@@ -129,6 +131,34 @@ class CustonDrawer extends StatelessWidget {
                 width: double.infinity,
                 child: Row(
                   children: const [
+                    Icon(Icons.numbers),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Gerador de números"),
+                  ],
+                )),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (bc) => const NumerosAleatoriosHivePage(),
+                ),
+              );
+            },
+          ),
+          const Divider(),
+          const SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: Row(
+                  children: const [
                     Icon(Icons.album),
                     SizedBox(
                       width: 5,
@@ -136,7 +166,13 @@ class CustonDrawer extends StatelessWidget {
                     Text("Configurações"),
                   ],
                 )),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (bc) => const  ConfiguracoesHivePage()));
+            },
           ),
           const Divider(),
           const SizedBox(
