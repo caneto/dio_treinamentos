@@ -6,6 +6,7 @@ import 'package:trilhaapp/app/shared/widgets/custom_drawer.dart';
 import 'card_page.dart';
 import 'image_assets.dart';
 import 'list_view.dart';
+import 'tarefa_page/tarefa_sqlite_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -45,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                 ImageAssetsPage(),
                 ListViewPage(),
                 ListViewHorizontal(),
-                TarefaPage()
+                TarefaSQLitePage()
               ],
             ),
           ),
