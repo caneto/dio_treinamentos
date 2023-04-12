@@ -4,6 +4,10 @@ import 'package:trilhaapp/app/pages/dados_cadastrais/dados_cadastrais_hive.dart'
 import 'package:trilhaapp/app/pages/login_page.dart';
 import 'package:trilhaapp/app/pages/numeros_aleatorios/numeros_aleatorios_hide_page.dart';
 
+import '../../pages/characters/characters_page.dart';
+import '../../pages/posts_page.dart';
+import '../../pages/tarefa_page/tarefa_http_page.dart';
+
 class CustonDrawer extends StatelessWidget {
   const CustonDrawer({Key? key}) : super(key: key);
 
@@ -171,8 +175,84 @@ class CustonDrawer extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (bc) => const  ConfiguracoesHivePage()));
+                      builder: (bc) => const ConfiguracoesHivePage()));
             },
+          ),
+          const Divider(),
+          const SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: Row(
+                  children: const [
+                    Icon(Icons.post_add),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Posts"),
+                  ],
+                )),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (bc) => const PostsPage()));
+            },
+          ),
+          const Divider(),
+          const SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: Row(
+                  children: const [
+                    Icon(Icons.image_sharp),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Herois"),
+                  ],
+                )),
+            onTap: () async {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (bc) => const CharactersPage()));
+            },
+          ),
+          const Divider(),
+          const SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: Row(
+                  children: const [
+                    Icon(Icons.help),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Tarefas HTTP"),
+                  ],
+                )),
+            onTap: () async {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (bc) => const TarefaHttpPage()));
+            },
+          ),
+          const Divider(),
+          const SizedBox(
+            height: 10,
           ),
           const Divider(),
           const SizedBox(
