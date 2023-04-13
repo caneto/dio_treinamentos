@@ -1,13 +1,13 @@
 class CepsBack4AppModel {
-  List<CepsBack4AppModel> ceps = [];
+  List<CepBack4AppModel> ceps = [];
 
   CepsBack4AppModel(this.ceps);
 
   CepsBack4AppModel.fromJson(Map<String, dynamic> json) {
     if (json['results'] != null) {
-      ceps = <CepsBack4AppModel>[];
+      ceps = <CepBack4AppModel>[];
       json['results'].forEach((v) {
-        ceps.add(CepsBack4AppModel.fromJson(v));
+        ceps.add(CepBack4AppModel.fromJson(v));
       });
     }
   }
