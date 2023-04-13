@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Desafio Dio CEP',
         theme: ThemeData(
             primarySwatch: Colors.blue,
             textTheme: GoogleFonts.robotoTextTheme()),
