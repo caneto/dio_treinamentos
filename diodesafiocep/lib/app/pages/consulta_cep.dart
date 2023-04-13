@@ -68,18 +68,22 @@ class _ConsultaCEPState extends State<ConsultaCEP> {
                           loading = true;
                         });
                         viacepModel = await viaCEPRepository.consultarCEP(cep);
-                        _cepsBack4App =
-                            await cepBack4AppRepository.obterCep(cep);
-                        if (_cepsBack4App.ceps.isEmpty) {
-                          var cepBack4AppModel = CepBack4AppModel.criar(
-                              cep,
-                              viacepModel.logradouro!,
-                              viacepModel.complemento!,
-                              viacepModel.bairro!,
-                              viacepModel.localidade!,
-                              viacepModel.uf!,
-                              viacepModel.ddd!);
-                          await cepBack4AppRepository.criar(cepBack4AppModel);
+                        if (viacepModel.cep != null) {
+                          _cepsBack4App =
+                              await cepBack4AppRepository.obterCep(cep);
+                          if (_cepsBack4App.ceps.isEmpty) {
+                            var cepBack4AppModel = CepBack4AppModel.criar(
+                                cep,
+                                viacepModel.logradouro!,
+                                viacepModel.complemento!,
+                                viacepModel.bairro!,
+                                viacepModel.localidade!,
+                                viacepModel.uf!,
+                                viacepModel.ddd!);
+                            await cepBack4AppRepository.criar(cepBack4AppModel);
+                            obterCeps();
+                            setState(() {});
+                          }
                         }
                       }
                       setState(() {
