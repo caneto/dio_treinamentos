@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/app/repositories/card_detail_repository.dart';
 
@@ -5,7 +7,9 @@ import '../model/card_detail.dart';
 import 'card_detail.dart';
 
 class CardPage extends StatefulWidget {
-  const CardPage({Key? key}) : super(key: key);
+  CardPage({Key? key}) : super(key: key);
+
+  bool isMount = true;
 
   @override
   State<CardPage> createState() => _CardPageState();
@@ -18,9 +22,17 @@ class _CardPageState extends State<CardPage> {
   @override
   void initState() {
     super.initState();
-    carregarDados();
+    if (widget.isMount) {
+      carregarDados();
+    }
   }
 
+  @override
+  void dispose() {
+    widget.isMount = false;
+    super.dispose();
+  }
+  
   void carregarDados() async {
     cardDetail = await cardDetailtRepository.get();
     setState(() {});

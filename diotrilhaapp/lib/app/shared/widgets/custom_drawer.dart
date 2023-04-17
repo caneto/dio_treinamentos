@@ -8,6 +8,7 @@ import 'package:trilhaapp/app/pages/numeros_aleatorios/numeros_aleatorios_hide_p
 import 'package:trilhaapp/app/pages/percent_indicator/percent_indicator_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../pages/auto_size_text/auto_size_text_page.dart';
 import '../../pages/characters/characters_page.dart';
 import '../../pages/posts_page.dart';
 import '../../pages/tarefa_page/tarefa_http_page.dart';
@@ -115,6 +116,20 @@ class CustonDrawer extends StatelessWidget {
                       title: const Text('Indicador de porcentagem'),
                       leading: const FaIcon(
                         FontAwesomeIcons.percent,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const AutoSizeTextPage()));
+                      },
+                      title: const Text('Auto Size Text'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.paperclip,
                         color: Colors.blue,
                         size: 24,
                       ),

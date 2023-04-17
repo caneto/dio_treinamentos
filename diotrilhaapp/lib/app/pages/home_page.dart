@@ -1,3 +1,4 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/app/pages/consulta_cep.dart';
 import 'package:trilhaapp/app/pages/list_view_horizontal.dart';
@@ -15,9 +16,24 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  PageController controller = PageController(initialPage: 0);
-  int posicaoPagina = 0;
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  //PageController controller = PageController(initialPage: 0);
+  late TabController tabController;
+
+  //int posicaoPagina = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    tabController = TabController(initialIndex: 0, length: 6, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +47,7 @@ class _HomePageState extends State<HomePage> {
       drawer: const SafeArea(
         child: CustonDrawer(),
       ),
-      body: Column(
+      /* body: Column(
         children: [
           Expanded(
             child: PageView(
@@ -52,8 +68,20 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ],
+      ), */
+      body: TabBarView(
+        controller: tabController,
+        children: [
+          const ConsultaCEP(),
+          CardPage(),
+          const ImageAssetsPage(),
+          const ListViewPage(),
+          const ListViewHorizontal(),
+          const TarefaSQLitePage()
+          //BrasilFieldsPage()
+        ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      /* bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         onTap: (value) {
           controller.jumpToPage(value);
@@ -85,6 +113,20 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.list),
           )
         ],
+      ), */
+      bottomNavigationBar: ConvexAppBar.badge(
+        const {0: '99+', 1: Icons.assistant_photo, 2: Colors.redAccent},
+        items: const [
+          TabItem(icon: Icons.get_app_rounded, title: 'Http'),
+          TabItem(icon: Icons.home, title: 'Card'),
+          TabItem(icon: Icons.add, title: 'Imagem'),
+          TabItem(icon: Icons.line_style, title: 'ListView'),
+          TabItem(icon: Icons.list, title: 'ListView2'),
+          TabItem(icon: Icons.image, title: 'Tarefas'),
+          //TabItem(icon: Icons.people, title: 'Brasil'),
+        ],
+        onTap: (int i) => tabController.index = i,
+        controller: tabController,
       ),
     );
   }

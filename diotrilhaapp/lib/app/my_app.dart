@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trilhaapp/app/pages/login_page.dart';
+import 'package:trilhaapp/app/pages/splash_screen/splash_screen_delay_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         supportedLocales: const [
           Locale('pt'),
         ],
-        home: const LoginPage(),
+        home: const SplashScreenDelayPage(),
       ),
     );
   }
