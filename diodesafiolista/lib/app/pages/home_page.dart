@@ -1,6 +1,7 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/app/pages/consulta_cep.dart';
+import 'package:trilhaapp/app/pages/dados_cadastrais_page.dart';
 import 'package:trilhaapp/app/pages/list_view_horizontal.dart';
 import 'package:trilhaapp/app/shared/widgets/custom_drawer.dart';
 
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    tabController = TabController(initialIndex: 0, length: 6, vsync: this);
+    tabController = TabController(initialIndex: 0, length: 2, vsync: this);
   }
 
   @override
@@ -47,81 +48,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       drawer: const SafeArea(
         child: CustonDrawer(),
       ),
-      /* body: Column(
-        children: [
-          Expanded(
-            child: PageView(
-              controller: controller,
-              onPageChanged: (value) {
-                setState(() {
-                  posicaoPagina = value;
-                });
-              },
-              children: const [
-                ConsultaCEP(),
-                CardPage(),
-                ImageAssetsPage(),
-                ListViewPage(),
-                ListViewHorizontal(),
-                TarefaSQLitePage()
-              ],
-            ),
-          ),
-        ],
-      ), */
       body: TabBarView(
         controller: tabController,
-        children: [
-          const ConsultaCEP(),
-          CardPage(),
-          const ImageAssetsPage(),
-          const ListViewPage(),
-          const ListViewHorizontal(),
-          const TarefaSQLitePage()
+        children: const [
+          ConsultaCEP(),
+          DadosCadastraisPage()
         ],
       ),
-      /* bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        onTap: (value) {
-          controller.jumpToPage(value);
-        },
-        currentIndex: posicaoPagina,
-        items: const [
-          BottomNavigationBarItem(
-            label: "HTTP",
-            icon: Icon(Icons.get_app_rounded),
-          ),
-          BottomNavigationBarItem(
-            label: "Pag1",
-            icon: Icon(Icons.home),
-          ),
-          BottomNavigationBarItem(
-            label: "Pag2",
-            icon: Icon(Icons.add),
-          ),
-          BottomNavigationBarItem(
-            label: "Pag3",
-            icon: Icon(Icons.person),
-          ),
-          BottomNavigationBarItem(
-            label: "Pag4",
-            icon: Icon(Icons.image),
-          ),
-          BottomNavigationBarItem(
-            label: "Tarefas",
-            icon: Icon(Icons.list),
-          )
-        ],
-      ), */
       bottomNavigationBar: ConvexAppBar.badge(
-        const {0: '99+', 1: Icons.assistant_photo, 2: Colors.redAccent},
+        const {},
         items: const [
-          TabItem(icon: Icons.get_app_rounded, title: 'Http'),
           TabItem(icon: Icons.home, title: 'Card'),
-          TabItem(icon: Icons.add, title: 'Imagem'),
-          TabItem(icon: Icons.line_style, title: 'ListView'),
-          TabItem(icon: Icons.list, title: 'ListView2'),
-          TabItem(icon: Icons.image, title: 'Tarefas'),
+          TabItem(icon: Icons.card_giftcard, title: 'Cadastro'),
         ],
         onTap: (int i) => tabController.index = i,
         controller: tabController,
