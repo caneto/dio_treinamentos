@@ -1,12 +1,26 @@
+import 'dart:io';
+
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:trilhaapp/app/pages/battery/battery_page.dart';
+import 'package:trilhaapp/app/pages/brasil_fields_page/brasil_fields_page.dart';
+import 'package:trilhaapp/app/pages/camera/camera_page.dart';
 import 'package:trilhaapp/app/pages/configuracoes/configuracoes_hive_page.dart';
+import 'package:trilhaapp/app/pages/connectivity_plus/connectivity_plus_page.dart';
 import 'package:trilhaapp/app/pages/dados_cadastrais/dados_cadastrais_hive.dart';
+import 'package:trilhaapp/app/pages/geolocator/geolocator_page.dart';
 import 'package:trilhaapp/app/pages/login_page.dart';
 import 'package:trilhaapp/app/pages/numeros_aleatorios/numeros_aleatorios_hide_page.dart';
 import 'package:trilhaapp/app/pages/percent_indicator/percent_indicator_page.dart';
+import 'package:trilhaapp/app/pages/qr_code/qr_code_page.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 
 import '../../pages/auto_size_text/auto_size_text_page.dart';
 import '../../pages/characters/characters_page.dart';
@@ -130,6 +144,226 @@ class CustonDrawer extends StatelessWidget {
                       title: const Text('Auto Size Text'),
                       leading: const FaIcon(
                         FontAwesomeIcons.paperclip,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const BrasilFieldsPage()));
+                      },
+                      title: const Text('Brasil Fields Page'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.brazilianRealSign,
+                        color: Colors.green,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () {
+                        var f = NumberFormat('#,###.0#', 'en_US');
+                        var fBR = NumberFormat('#,###.0#', 'pt_BR');
+                        if (kDebugMode) {
+                          print(f.format(12345.345));
+                        }
+                        if (kDebugMode) {
+                          print(fBR.format(123456.345));
+                        }
+
+                        var data = DateTime(2022, 05, 09);
+                        if (kDebugMode) {
+                          print(DateFormat('EEEEE', 'en_US').format(data));
+                        }
+                        if (kDebugMode) {
+                          print(DateFormat('EEEEE', 'pt_BR').format(data));
+                        }
+
+                        Intl.defaultLocale = 'pt_BR';
+                        if (kDebugMode) {
+                          print(data.toString());
+                        }
+                      },
+                      title: const Text('Intl'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.house,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () {
+                        if (context.locale.toString() == "pt_BR") {
+                          context.setLocale(const Locale('en', 'US'));
+                        } else {
+                          context.setLocale(const Locale('pt', 'BR'));
+                        }
+                        Navigator.pop(context);
+                      },
+                      title: const Text('Pt-Br'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.flag,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const BatteryPage(),
+                          ),
+                        );
+                      },
+                      title: const Text('Indicador da bateria'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.batteryHalf,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () async {
+                        var directory =
+                            await path_provider.getTemporaryDirectory();
+                        if (kDebugMode) {
+                          print(directory.path);
+                        }
+                        directory = await path_provider
+                            .getApplicationSupportDirectory();
+                        if (kDebugMode) {
+                          print(directory.path);
+                        }
+                        directory = await path_provider
+                            .getApplicationDocumentsDirectory();
+                        if (kDebugMode) {
+                          print(directory.path);
+                        }
+                      },
+                      title: const Text('Path'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.flag,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () async {
+                        PackageInfo packageInfo =
+                            await PackageInfo.fromPlatform();
+
+                        String appName = packageInfo.appName;
+                        String packageName = packageInfo.packageName;
+                        String version = packageInfo.version;
+                        String buildNumber = packageInfo.buildNumber;
+
+                        if (kDebugMode) {
+                          print(appName);
+                          print(packageName);
+                          print(version);
+                          print(buildNumber);
+                          print(Platform.operatingSystem);
+                        }
+                      },
+                      title: const Text('Informações pacote'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.appStoreIos,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () async {
+                        DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+                        if (Platform.isAndroid) {
+                          AndroidDeviceInfo androidInfo =
+                              await deviceInfo.androidInfo;
+                          if (kDebugMode) {
+                            print('Running on ${androidInfo.model}');
+                          } // e.g. "Moto G (4)"
+                        } else if (Platform.isIOS) {
+                          IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+                          if (kDebugMode) {
+                            print('Running on ${iosInfo.utsname.machine}');
+                          } // e.g. "iPod7,1"
+                        } else {
+                          WebBrowserInfo webBrowserInfo =
+                              await deviceInfo.webBrowserInfo;
+                          if (kDebugMode) {
+                            print('Running on ${webBrowserInfo.userAgent}');
+                          }
+                        }
+                      },
+                      title: const Text('Informações dispositivo'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.robot,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const ConnectivityPlusPage(),
+                          ),
+                        );
+                      },
+                      title: const Text('Conexão'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.wifi,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const GeolocatorPage(),
+                          ),
+                        );
+                      },
+                      title: const Text('GeoLocalization GPS'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.mapPin,
+                        color: Colors.black,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const QrCodePage(),
+                          ),
+                        );
+                      },
+                      title: const Text('QR Code'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.qrcode,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const CameraPage(),
+                          ),
+                        );
+                      },
+                      title: const Text('Camera'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.camera,
                         color: Colors.blue,
                         size: 24,
                       ),

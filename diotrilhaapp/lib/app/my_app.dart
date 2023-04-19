@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,10 +20,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             primarySwatch: Colors.blue,
             textTheme: GoogleFonts.robotoTextTheme()),
-        localizationsDelegates: GlobalMaterialLocalizations.delegates,
-        supportedLocales: const [
-          Locale('pt'),
-        ],
+        //localizationsDelegates: GlobalMaterialLocalizations.delegates,
+        //supportedLocales: const [
+        //  Locale('pt'),
+        //],
+      localizationsDelegates: context.localizationDelegates,  
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
         home: const SplashScreenDelayPage(),
       ),
     );

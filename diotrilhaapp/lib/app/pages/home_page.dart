@@ -4,6 +4,7 @@ import 'package:trilhaapp/app/pages/consulta_cep.dart';
 import 'package:trilhaapp/app/pages/list_view_horizontal.dart';
 import 'package:trilhaapp/app/shared/widgets/custom_drawer.dart';
 
+import 'brasil_fields_page/brasil_fields_page.dart';
 import 'card_page.dart';
 import 'image_assets.dart';
 import 'list_view.dart';
@@ -24,7 +25,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     tabController = TabController(initialIndex: 0, length: 6, vsync: this);
   }
@@ -78,7 +78,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           const ListViewPage(),
           const ListViewHorizontal(),
           const TarefaSQLitePage()
-          //BrasilFieldsPage()
         ],
       ),
       /* bottomNavigationBar: BottomNavigationBar(
@@ -123,7 +122,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           TabItem(icon: Icons.line_style, title: 'ListView'),
           TabItem(icon: Icons.list, title: 'ListView2'),
           TabItem(icon: Icons.image, title: 'Tarefas'),
-          //TabItem(icon: Icons.people, title: 'Brasil'),
         ],
         onTap: (int i) => tabController.index = i,
         controller: tabController,
