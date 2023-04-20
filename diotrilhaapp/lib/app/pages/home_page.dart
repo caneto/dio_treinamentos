@@ -1,9 +1,13 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:trilhaapp/app/pages/consulta_cep.dart';
 import 'package:trilhaapp/app/pages/list_view_horizontal.dart';
 import 'package:trilhaapp/app/shared/widgets/custom_drawer.dart';
 
+import '../services/dark_mode_service.dart';
 import 'brasil_fields_page/brasil_fields_page.dart';
 import 'card_page.dart';
 import 'image_assets.dart';
@@ -38,11 +42,29 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //appBar: AppBar(
+      //  title: const Text(
+      //    "Home Page",
+      //    //style: GoogleFonts.fasterOne(),
+      //  ),
+      //),
       appBar: AppBar(
-        title: const Text(
-          "Home Page",
-          //style: GoogleFonts.fasterOne(),
+        title: Text(
+          "APP_TITLE".tr(),
+          style: GoogleFonts.roboto(),
         ),
+        actions: [
+          const Center(child: Text("Dark Mode")),
+          Consumer<DarkModeService>(
+            builder: (_, darkModeService, widget) {
+              return Switch(
+                  value: darkModeService.darkMode,
+                  onChanged: (bool value) {
+                    darkModeService.darkMode = !darkModeService.darkMode;
+                  });
+            },
+          )
+        ],
       ),
       drawer: const SafeArea(
         child: CustonDrawer(),
