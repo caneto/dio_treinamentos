@@ -19,6 +19,7 @@ import 'package:trilhaapp/app/pages/login_page.dart';
 import 'package:trilhaapp/app/pages/numeros_aleatorios/numeros_aleatorios_hide_page.dart';
 import 'package:trilhaapp/app/pages/percent_indicator/percent_indicator_page.dart';
 import 'package:trilhaapp/app/pages/provider/contador_provider_page.dart';
+import 'package:trilhaapp/app/pages/provider/tarefa_provider_page.dart';
 import 'package:trilhaapp/app/pages/qr_code/qr_code_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
@@ -398,7 +399,6 @@ class CustonDrawer extends StatelessWidget {
                 ),
                 const Divider(),
                 const SizedBox(height: 4),
-                    const SizedBox(height: 4),
                 InkWell(
                   child: Container(
                       padding: const EdgeInsets.symmetric(
@@ -420,6 +420,31 @@ class CustonDrawer extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) =>
                                 const ContadorProviderPage()));
+                  },
+                ),
+                const Divider(),
+                const SizedBox(height: 4),
+                InkWell(
+                  child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 10),
+                      width: double.infinity,
+                      child: Row(
+                        children: const [
+                          Icon(Icons.outlet),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text("Tarefa com Provider"),
+                        ],
+                      )),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                TarefaProviderPage()));
                   },
                 ),
                 const Divider(),
