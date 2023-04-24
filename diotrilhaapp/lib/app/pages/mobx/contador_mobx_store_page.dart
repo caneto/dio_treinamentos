@@ -12,25 +12,32 @@ class ContadorMobXStorePage extends StatelessWidget {
     if (kDebugMode) {
       print("build");
     }
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          "Contador MobX Store",
-          style: TextStyle(fontSize: 26),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Contador Mobx Store"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Contador MobX Store",
+              style: TextStyle(fontSize: 26),
+            ),
+            Observer(builder: (context) {
+              return Text(
+                "${contadorMobXStore.contador}",
+                style: const TextStyle(fontSize: 26),
+              );
+            }),
+            TextButton(
+                onPressed: () {
+                  contadorMobXStore.incrementar();
+                },
+                child: const Text("Incrementar")),
+          ],
         ),
-        Observer(builder: (context) {
-          return Text(
-            "${contadorMobXStore.contador}",
-            style: const TextStyle(fontSize: 26),
-          );
-        }),
-        TextButton(
-            onPressed: () {
-              contadorMobXStore.incrementar();
-            },
-            child: const Text("Incrementar")),
-      ],
+      ),
     );
   }
 }

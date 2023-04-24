@@ -15,25 +15,32 @@ class ContadorMobXPage extends StatelessWidget {
     if (kDebugMode) {
       print("build");
     }
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          "Contador MobX",
-          style: TextStyle(fontSize: 26),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Contador Mobx"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Contador MobX",
+              style: TextStyle(fontSize: 26),
+            ),
+            Observer(builder: (context) {
+              return Text(
+                "${contadorMobXService.contador}",
+                style: const TextStyle(fontSize: 26),
+              );
+            }),
+            TextButton(
+                onPressed: () {
+                  contadorMobXService.incrementar();
+                },
+                child: const Text("Incrementar")),
+          ],
         ),
-        Observer(builder: (context) {
-          return Text(
-            "${contadorMobXService.contador}",
-            style: const TextStyle(fontSize: 26),
-          );
-        }),
-        TextButton(
-            onPressed: () {
-              contadorMobXService.incrementar();
-            },
-            child: const Text("Incrementar")),
-      ],
+      ),
     );
   }
 }

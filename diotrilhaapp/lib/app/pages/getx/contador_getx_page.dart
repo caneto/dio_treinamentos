@@ -12,25 +12,32 @@ class ContadorGetXPage extends StatelessWidget {
     if (kDebugMode) {
       print("build");
     }
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          "Contador GetX",
-          style: TextStyle(fontSize: 26),
+    return Scaffold(
+       appBar: AppBar(
+        title: const Text("Contador GetX"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Contador GetX",
+              style: TextStyle(fontSize: 26),
+            ),
+            Obx(() {
+              return Text(
+                "${contadorGetXService.contador}",
+                style: const TextStyle(fontSize: 26),
+              );
+            }),
+            TextButton(
+                onPressed: () {
+                  contadorGetXService.incrementar();
+                },
+                child: const Text("Incrementar")),
+          ],
         ),
-        Obx(() {
-          return Text(
-            "${contadorGetXService.contador}",
-            style: const TextStyle(fontSize: 26),
-          );
-        }),
-        TextButton(
-            onPressed: () {
-              contadorGetXService.incrementar();
-            },
-            child: const Text("Incrementar")),
-      ],
+      ),
     );
   }
 }

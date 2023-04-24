@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trilhaapp/main.dart';
 
 import '../model/comment_model.dart';
 import '../repositories/comments/comments_dio_repository.dart';
@@ -13,13 +14,14 @@ class CommentsPage extends StatefulWidget {
 }
 
 class _CommentsPageState extends State<CommentsPage> {
-  late CommentsRepository commentsRepository;
+  //late CommentsRepository commentsRepository;
+  var commentsRepository = getIt<CommentsRepository>();
   var comments = <CommentModel>[];
 
   @override
   void initState() {
     super.initState();
-    commentsRepository = CommentsDioRepsositoy();
+    //commentsRepository = CommentsDioRepsositoy();
     carregarDados();
   }
 

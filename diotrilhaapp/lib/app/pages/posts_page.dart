@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../main.dart';
 import '../model/post_model.dart';
 import '../repositories/posts/posts_dio_repository.dart';
 import '../repositories/posts/posts_repository.dart';
@@ -12,13 +13,14 @@ class PostsPage extends StatefulWidget {
 }
 
 class _PostsPageState extends State<PostsPage> {
-  late PostsRepository postsRepository;
+  //late PostsRepository postsRepository;
+  var postsRepository = getIt<PostsRepository>();
   var posts = <PostModel>[];
 
   @override
   void initState() {
     super.initState();
-    postsRepository = PostsDioRepository();
+    //postsRepository = PostsDioRepository();
     carregarDados();
   }
 

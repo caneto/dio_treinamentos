@@ -21,10 +21,10 @@ final getIt = GetIt.instance;
 setupGetIt() {
   getIt.registerSingleton<CounterMobXService>(CounterMobXService());
   getIt.registerSingleton<JsonPlaceHolderCustonDio>(JsonPlaceHolderCustonDio());
-  //getIt.registerSingleton<PostsRepository>(
-  //    PostsDioRepository(getIt<JsonPlaceHolderCustonDio>()));
-  //getIt.registerSingleton<CommentsRepository>(
-  //    CommentsDioRepsositoy(getIt<JsonPlaceHolderCustonDio>()));
+  getIt.registerSingleton<PostsRepository>(
+      PostsDioRepository(jsonPlaceHolderCustonDio: getIt<JsonPlaceHolderCustonDio>())); 
+  getIt.registerSingleton<CommentsRepository>(
+      CommentsDioRepositoy(jsonPlaceHolderCustonDio: getIt<JsonPlaceHolderCustonDio>())); //
   getIt.registerSingleton<ListaTarefasStore>(ListaTarefasStore());
 }
 

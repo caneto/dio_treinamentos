@@ -6,7 +6,6 @@ import '../../../main.dart';
 import '../../model/lista_tarefa_store.dart';
 import '../../shared/widgets/tarefa_item.dart';
 
-
 class TarefaMobXPage extends StatelessWidget {
   var descricaoContoller = TextEditingController();
   var listaTarefasStore = getIt<ListaTarefasStore>();
@@ -14,6 +13,9 @@ class TarefaMobXPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: const Text("Tarefa Mobx  "),
+        ),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () {

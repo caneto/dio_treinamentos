@@ -15,7 +15,12 @@ import 'package:trilhaapp/app/pages/configuracoes/configuracoes_hive_page.dart';
 import 'package:trilhaapp/app/pages/connectivity_plus/connectivity_plus_page.dart';
 import 'package:trilhaapp/app/pages/dados_cadastrais/dados_cadastrais_hive.dart';
 import 'package:trilhaapp/app/pages/geolocator/geolocator_page.dart';
+import 'package:trilhaapp/app/pages/getx/contador_getx_page.dart';
+import 'package:trilhaapp/app/pages/getx/tarefa_getx_page.dart';
 import 'package:trilhaapp/app/pages/login_page.dart';
+import 'package:trilhaapp/app/pages/mobx/contador_mobx_page.dart';
+import 'package:trilhaapp/app/pages/mobx/contador_mobx_store_page.dart';
+import 'package:trilhaapp/app/pages/mobx/tarefa_mobx_page.dart';
 import 'package:trilhaapp/app/pages/numeros_aleatorios/numeros_aleatorios_hide_page.dart';
 import 'package:trilhaapp/app/pages/percent_indicator/percent_indicator_page.dart';
 import 'package:trilhaapp/app/pages/provider/contador_provider_page.dart';
@@ -372,22 +377,143 @@ class CustonDrawer extends StatelessWidget {
                     ),
                   ],
                 ),
+                ExpansionTileWidget(
+                  expansionTile: 'Observaveis',
+                  expansionSubTile: 'Observaveis',
+                  children: [
+                    ListTile(
+                      onTap: () async {
+                        Navigator.pop(context);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const ContadorProviderPage()));
+                      },
+                      title: const Text('Contador com Provider'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.couch,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () async {
+                        Navigator.pop(context);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ContadorMobXPage()));
+                      },
+                      title: const Text('Contador com Mobx'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.moneyBill,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () async {
+                        Navigator.pop(context);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ContadorMobXStorePage()));
+                      },
+                      title: const Text('Contador com Store Mobx'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.store,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () async {
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TarefaProviderPage(),
+                          ),
+                        );
+                      },
+                      title: const Text('Tarefa com Provider'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.couch,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () async {
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TarefaMobXPage(),
+                          ),
+                        );
+                      },
+                      title: const Text('Tarefa com Mobx'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.faceGrin,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () async {
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ContadorGetXPage(),
+                          ),
+                        );
+                      },
+                      title: const Text('Contador com GetX'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.table,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () async {
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TarefaGetXPage(),
+                          ),
+                        );
+                      },
+                      title: const Text('Tarefa com GetX'),
+                      leading: const FaIcon(
+                        FontAwesomeIcons.tablets,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                    ),
+                  ],
+                ),
                 const Divider(),
                 const SizedBox(height: 4),
                 InkWell(
                   child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 10),
-                      width: double.infinity,
-                      child: Row(
-                        children: const [
-                          Icon(Icons.person),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text("Dados cadastráis"),
-                        ],
-                      )),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 10),
+                    width: double.infinity,
+                    child: Row(
+                      children: const [
+                        Icon(Icons.person),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text("Dados cadastráis"),
+                      ],
+                    ),
+                  ),
                   onTap: () {
                     Navigator.pop(context);
                     Navigator.push(
@@ -395,56 +521,6 @@ class CustonDrawer extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) =>
                                 const DadosCadastraisHivePage()));
-                  },
-                ),
-                const Divider(),
-                const SizedBox(height: 4),
-                InkWell(
-                  child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 10),
-                      width: double.infinity,
-                      child: Row(
-                        children: const [
-                          Icon(Icons.countertops),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text("Contador com Provider"),
-                        ],
-                      )),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const ContadorProviderPage()));
-                  },
-                ),
-                const Divider(),
-                const SizedBox(height: 4),
-                InkWell(
-                  child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 10),
-                      width: double.infinity,
-                      child: Row(
-                        children: const [
-                          Icon(Icons.outlet),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text("Tarefa com Provider"),
-                        ],
-                      )),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                TarefaProviderPage()));
                   },
                 ),
                 const Divider(),

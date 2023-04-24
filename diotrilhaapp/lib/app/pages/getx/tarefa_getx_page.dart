@@ -10,6 +10,9 @@ class TarefaGetXPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: const Text("Tarefa GetX"),
+        ),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () {
