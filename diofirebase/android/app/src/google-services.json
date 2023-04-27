@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "566954567463",
+    "project_id": "dio-firebase-app",
+    "storage_bucket": "dio-firebase-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566954567463:android:5e80c775e65690d495eb02",
+        "android_client_info": {
+          "package_name": "br.com.capsistema.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566954567463-0nld4djl82ljo28lp1q11k5v4li7h9ga.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.capsistema.firebase",
+            "certificate_hash": "e3b3ade4d36e257fef50928684fe7119b3989b12"
+          }
+        },
+        {
+          "client_id": "566954567463-ea0q37f4t5od67oibk1fu07pbifba9jg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUbnQM1JLZTBG7C00_bboQv8lB6i52TIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "566954567463-ea0q37f4t5od67oibk1fu07pbifba9jg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
